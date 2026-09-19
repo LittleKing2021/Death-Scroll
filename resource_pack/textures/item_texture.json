@@ -1,0 +1,9 @@
+{
+	"texture_data": {
+		"grave_scroll": {
+			"textures": "textures/items/grave_scroll"
+		}
+	},
+	"resource_pack_name": "Grave Scroll",
+	"texture_name": "atlas.items"
+}

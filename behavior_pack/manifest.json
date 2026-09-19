@@ -1,0 +1,36 @@
+{
+	"format_version": 2,
+	"header": {
+		"description": "Return From The Grave",
+		"name": "Grave Scroll (BP)",
+		"uuid": "f963bdd2-6cb5-4ea3-a410-b76f3b2b43e7",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 26, 13]
+	},
+	"modules": [
+		{
+			"description": "Return From The Grave",
+			"type": "data",
+			"uuid": "5303d892-19b2-4cda-b7f4-671c3b5e1f4f",
+			"version": [1, 0, 0]
+		},
+		{
+			"description": "Gametest Module",
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/main.js",
+			"uuid": "0175f683-25e2-4e39-ac4b-0a5bf3a70130",
+			"version": [1, 0, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "a776f55b-6a4d-4fe4-b200-f520b760932a",
+			"version": [1, 0, 0]
+		},
+		{
+			"module_name": "@minecraft/server",
+			"version": "2.4.0"
+		}
+	]
+}

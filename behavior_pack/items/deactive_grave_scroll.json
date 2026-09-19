@@ -1,0 +1,24 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:item": {
+		"description": {
+			"identifier": "new:grave_scroll2",
+			"menu_category": {
+				"category": "none",
+                "is_hidden_in_commands": false
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"textures": {
+					"default": "grave_scroll"
+				}
+			},
+			"minecraft:display_name": {
+				"value": "Grave Scroll"
+			},
+			"minecraft:glint": false,
+			"minecraft:max_stack_size": 4
+		}
+	}
+}

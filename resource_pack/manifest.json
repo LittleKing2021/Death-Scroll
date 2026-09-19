@@ -1,0 +1,24 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Grave Scroll RP",
+		"description": "Return From The Grave",
+		"uuid": "a776f55b-6a4d-4fe4-b200-f520b760932a",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 21, 21]
+	},
+	"modules": [
+		{
+			"type": "resources",
+			"description": "Return From The Grave",
+			"uuid": "eb47b99e-a22f-4641-95a5-3852ce51eeaf",
+			"version": [1, 0, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "f963bdd2-6cb5-4ea3-a410-b76f3b2b43e7",
+			"version": [1, 0, 0]
+		}
+	]
+}
