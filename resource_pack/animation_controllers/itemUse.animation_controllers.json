@@ -1,0 +1,27 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.scroll": {
+			"states": {
+				"default": {
+					"animations": [
+						{"first_person": "c.is_first_person"},
+						{"third_person": "!c.is_first_person"}
+					],
+					"transitions": [
+						{"active": "query.is_using_item"}
+					]
+				},
+				"active": {
+					"animations": [
+						{"first_person": "c.is_first_person"},
+						{"third_person": "!c.is_first_person"}
+					],
+					"transitions": [
+						{"default": "!query.is_using_item"}
+					]
+				}
+			}
+		}
+	}
+}
