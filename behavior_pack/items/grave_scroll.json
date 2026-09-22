@@ -20,10 +20,18 @@
 			"minecraft:max_stack_size": 4,
 			"minecraft:allow_off_hand": false,
 			"minecraft:use_animation":"none",
+			"minecraft:cooldown": {
+				"category": "grave_scroll",
+				"type": "use",
+				"duration": 1
+			},
 			"minecraft:use_modifiers": {
 				"emit_vibrations": true,
 				"use_duration": 3.5,
 				"movement_modifier": 0.2
+			},
+			"minecraft:tags": {
+				"tags": [ "custom:grave_scroll" ]
 			}
 		}
 	}
