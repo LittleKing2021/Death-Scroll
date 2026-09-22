@@ -56,10 +56,10 @@ system.runInterval(()=>{
         const container = player.getComponent("inventory").container
         const item = container.getItem(player.selectedSlotIndex)
         if(!player.getDynamicProperty("LastDeath") && item?.typeId == "new:grave_scroll"){
-           container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll2",item.amount))
+           //container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll2",item.amount))
         }
         if(player.getDynamicProperty("LastDeath") && item?.typeId == "new:grave_scroll2"){
-           container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
+           //container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
         }
     }
 }, 15)

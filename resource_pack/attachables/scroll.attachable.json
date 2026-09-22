@@ -9,6 +9,10 @@
 			},
 			"textures": {
 				"default": "textures/items/grave_scroll",
+				"scroll_1": "textures/items/grave_scroll1",
+				"scroll_2": "textures/items/grave_scroll2",
+				"scroll_3": "textures/items/grave_scroll3",
+				"scroll_4": "textures/items/grave_scroll4",
         		"enchanted": "textures/misc/enchanted_item_glint"
 			},
 			"geometry": {
@@ -24,7 +28,7 @@
 					"controller"
 				]
 			},
-			"render_controllers": [ "controller.render.item_default" ]
+			"render_controllers": [ "controller.render.grave_scroll" ]
 		}
 	}
 }

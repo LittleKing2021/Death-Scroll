@@ -1,0 +1,26 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.grave_scroll": {
+			"geometry": "Geometry.default",
+			"materials": [
+				{
+					"*": "Material.default"
+				},
+				{ "*": "variable.is_enchanted" }
+			],
+			"arrays": {
+				"textures":{
+					"array.item_frames":[
+						"Texture.default",
+						"Texture.scroll_1",
+						"Texture.scroll_2",
+						"Texture.scroll_3",
+						"Texture.scroll_4"
+					]
+				}
+			},
+			"textures": [ "temp.life_time = query.life_time * 8.0; return array.item_frames[temp.life_time];", "texture.enchanted" ]
+		}
+	}
+}
