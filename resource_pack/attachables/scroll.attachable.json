@@ -4,7 +4,7 @@
 		"description": {
 			"identifier": "new:grave_scroll",
 			"materials": {
-				"default": "item_in_hand",
+				"default": "item_in_hand_entity_alphatest",
 				"enchanted": "item_in_hand_glint"
 			},
 			"textures": {
