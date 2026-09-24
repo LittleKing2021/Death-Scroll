@@ -1,6 +1,23 @@
 {
 	"format_version": "1.10.0",
 	"animations": {
+		"animation.scroll.first_person": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"item": {
+					"rotation": [28.8375, 28.7269, 5.0364],
+					"position": [-2, 24, 0]
+				}
+			}
+		},
+		"animation.scroll.third_person": {
+			"loop": true,
+			"bones": {
+				"item": {
+					"position": [0, 22, -7]
+				}
+			}
+		},
 		"animation.scroll.use_item_progress": {
 			"loop": true,
 			"override_previous_animation": true,
@@ -16,20 +33,12 @@
 				}
 			}
 		},
-		"animation.scroll.first_person": {
-			"loop": "hold_on_last_frame",
-			"bones": {
-				"item": {
-					"rotation": [28.8375, 28.7269, 5.0364],
-					"position": [0, 22, 0]
-				}
-			}
-		},
-		"animation.scroll.third_person": {
+		"animation.scroll.first_use_item_progress": {
 			"loop": true,
 			"bones": {
 				"item": {
-					"position": [0, 22, -7]
+					"rotation": [-11.4863, 60.0872, -52.2395],
+					"position": [-4.69593, 24.20566, -13.83047]
 				}
 			}
 		}

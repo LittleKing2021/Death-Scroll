@@ -14,7 +14,7 @@
 				},
 				"active": {
 					"animations": [
-						{"first_person": "c.is_first_person"},
+						{"first_person_use": "c.is_first_person"},
 						{"third_person": "!c.is_first_person"}
 					],
 					"transitions": [

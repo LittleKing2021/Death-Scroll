@@ -113,12 +113,14 @@ world.afterEvents.itemUse.subscribe(({itemStack:item,source:player})=>{
     Particle(player,"use")
 })
 world.afterEvents.itemStartUse.subscribe(({ itemStack: item, source: player }) => {
+    if (item.typeId == "new:grave_scroll2"){
+        player.runCommand(`title @s actionbar Go Die First`)
+    }
+
     if(item.typeId != "new:grave_scroll" ) return
     let deathData = JSON.parse(player.getDynamicProperty("LastDeath"))
     
-    if (!player.getDynamicProperty("LastDeath")){
-        player.runCommand(`title @s actionbar Go Die First`)
-    }else if(deathData.dimension.id != player.dimension.id){
+    if(deathData.dimension.id != player.dimension.id){
         player.runCommand(`title @s actionbar Must be in the same dimension`)
     }else{
         player.runCommand(`playsound "portal.trigger" @s`)
@@ -134,6 +136,7 @@ world.afterEvents.itemStopUse.subscribe(({ itemStack: item, source: player })=>{
 })
 world.afterEvents.itemCompleteUse.subscribe(({itemStack:item,source:player})=>{
     if (item.typeId == "new:grave_scroll" && player.getDynamicProperty("LastDeath")){
+        let deathData = JSON.parse(player.getDynamicProperty("LastDeath"))
         player.runCommand(`stopsound @s "portal.trigger"`)
         itemUse[player.id] = false
         Particle(player,"done")
@@ -141,7 +144,7 @@ world.afterEvents.itemCompleteUse.subscribe(({itemStack:item,source:player})=>{
         player.setDynamicProperty("LastDeath",undefined)
         system.runTimeout(()=>{
             player.runCommand(`playsound "mob.endermen.portal" @s`)
-        },2)
+        },0.1)
         player.startItemCooldown("grave_scroll",20)
         if(player.getGameMode() == 'Creative') return
         if(item.amount > 1){
@@ -165,10 +168,10 @@ system.runInterval(()=>{
         const container = player.getComponent("inventory").container
         const item = container.getItem(player.selectedSlotIndex)
         if(!player.getDynamicProperty("LastDeath") && item?.typeId == "new:grave_scroll"){
-           //container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll2",item.amount))
+           container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll2",item.amount))
         }
         if(player.getDynamicProperty("LastDeath") && item?.typeId == "new:grave_scroll2"){
-           //container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
+           container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
         }
     }
 }, 15)
