@@ -1,11 +1,12 @@
 # Grave- Scroll-Addon
 
-# version 
+### version 
 1.0.0
 
-# Description
+### Description
 "No matter how far just use the Grave Scroll!!" Allows the player to instantly teleport to where they dead if in the same dimension.
 
-# To Do
-- re-texture scroll
-- Use Animation
+
+# To Do:
+Make Pack Icon
+Touch up particles

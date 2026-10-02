@@ -17,7 +17,7 @@
 			"animations": {
 				"first_person": "animation.scroll.first_person",
 				"third_person": "animation.scroll.third_person",
-				"controller": "controller.animation.scroll"
+				"controller": "controller.animation.inactive_scroll"
 			},
 			"scripts": {
 				"animate": [

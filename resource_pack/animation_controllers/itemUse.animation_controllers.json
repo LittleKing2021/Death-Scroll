@@ -22,6 +22,17 @@
 					]
 				}
 			}
+		},
+		"controller.animation.inactive_scroll": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"animations": [
+						{"first_person": "c.is_first_person"},
+						{"third_person": "!c.is_first_person"}
+					]
+				}
+			}
 		}
 	}
 }

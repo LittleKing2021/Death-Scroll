@@ -1,22 +1,19 @@
 {
-	"format_version": "1.10.0",
+	"format_version": "1.8.0",
 	"render_controllers": {
 		"controller.render.grave_scroll": {
 			"geometry": "Geometry.default",
 			"materials": [
-				{
-					"*": "Material.default"
-				},
-				{ "*": "variable.is_enchanted ? material.enchanted : material.default" }
+				{ "*": "variable.is_enchanted ? Material.enchanted : Material.default" }
 			],
 			"arrays": {
 				"textures":{
-					"array.item_frames":[
-						"Texture.default",
-						"Texture.scroll_1",
-						"Texture.scroll_2",
-						"Texture.scroll_3",
-						"Texture.scroll_4"
+					"array.item_frames": [
+						"texture.default",
+						"texture.scroll_1",
+						"texture.scroll_2",
+						"texture.scroll_3",
+						"texture.scroll_4"
 					]
 				}
 			},
