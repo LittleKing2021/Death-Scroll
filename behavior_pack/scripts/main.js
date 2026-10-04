@@ -109,12 +109,8 @@ function run (player,info = [],time = 0){
 }
 
 world.afterEvents.itemUse.subscribe(({itemStack:item,source:player})=>{
-    if (item.typeId == "new:grave_scroll2"){
-        player.runCommand(`title @s actionbar Go Die First`)
-    }
     if(item.typeId != "minecraft:stick") return
-    player.setGameMode("Survival")
-    player.kill()
+    player.setDynamicProperty("LastDeath",JSON.stringify({location:player.location,dimension:player.dimension}))
     //Particle(player,"use")
 })
 world.afterEvents.itemStartUse.subscribe(({ itemStack: item, source: player }) => {
@@ -124,15 +120,10 @@ world.afterEvents.itemStartUse.subscribe(({ itemStack: item, source: player }) =
     if(deathData.dimension.id != player.dimension.id){
         player.runCommand(`title @s actionbar Must be in the same dimension`)
     }else{
+        player.playAnimation("animation.scroll.use_item_progress")
         player.runCommand(`playsound "portal.trigger" @s`)
         itemUse[player.id] = true
         Particle(player)
-        system.runTimeout(()=>{
-            if(itemUse[player.id] == false) return
-            console.log("Running Animation")
-            player.playAnimation("animation.scroll.before_teleportation")
-            if(itemUse[player.id] == false) player.playAnimation("animation.scroll.stop_playerAnimation")
-        },60)
     }
 })
 world.afterEvents.itemStopUse.subscribe(({ itemStack: item, source: player })=>{
@@ -143,7 +134,7 @@ world.afterEvents.itemStopUse.subscribe(({ itemStack: item, source: player })=>{
     }
 })
 world.afterEvents.itemCompleteUse.subscribe(({itemStack:item,source:player})=>{
-    if (item.typeId == "new:grave_scroll" && player.getDynamicProperty("LastDeath")){
+    if (item.typeId == "new:grave_scroll" && itemUse[player.id]){
         let deathData = JSON.parse(player.getDynamicProperty("LastDeath"))
         player.runCommand(`stopsound @s "portal.trigger"`)
         itemUse[player.id] = false
@@ -176,10 +167,18 @@ system.runInterval(()=>{
     for(const player of world.getAllPlayers()){
         const container = player.getComponent("inventory").container
         const item = container.getItem(player.selectedSlotIndex)
-        if(!player.getDynamicProperty("LastDeath") && item?.typeId == "new:grave_scroll"){
+        if(
+            (!player.getDynamicProperty("LastDeath") ||
+            JSON.parse(player.getDynamicProperty("LastDeath")).dimension.id != player.dimension.id)
+            && item?.typeId == "new:grave_scroll"
+        ){
             container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll2",item.amount))
         }
-        if(player.getDynamicProperty("LastDeath") && item?.typeId == "new:grave_scroll2"){
+        if(
+            player.getDynamicProperty("LastDeath")
+            && JSON.parse(player.getDynamicProperty("LastDeath")).dimension.id == player.dimension.id
+            && item?.typeId == "new:grave_scroll2"
+        ){
             container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
         }
     }
