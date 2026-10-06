@@ -120,7 +120,6 @@ world.afterEvents.itemStartUse.subscribe(({ itemStack: item, source: player }) =
     if(deathData.dimension.id != player.dimension.id){
         player.runCommand(`title @s actionbar Must be in the same dimension`)
     }else{
-        player.playAnimation("animation.scroll.use_item_progress")
         player.runCommand(`playsound "portal.trigger" @s`)
         itemUse[player.id] = true
         Particle(player)

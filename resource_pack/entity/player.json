@@ -4,7 +4,8 @@
         "description": {
             "identifier": "minecraft:player",
             "animations": {
-                "grave_scroll": "animation.scroll.use_item_progress"
+                "grave_scroll": "animation.scroll.use_item_progress",
+                "use_grave_scroll": "animation.scroll.before_teleportation"
             }
         }
     }
