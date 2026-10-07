@@ -1,6 +1,5 @@
 import { world, system, ItemStack } from "@minecraft/server"
 
-var particle = {}
 var itemUse = {}
 function Particle(player,type = "use"){
     if(type == "use"){
@@ -10,13 +9,13 @@ function Particle(player,type = "use"){
             `particle minecraft:mob_portal ^^2.6^`,
             `particle minecraft:mob_portal ^^2.6^`,
             `particle minecraft:mob_portal ^^2.6^`
-        ],40)
+        ],type,40)
         run(player,[
             `particle minecraft:mob_portal ~0.1 ~1 ~2`,
             `particle minecraft:mob_portal ~0.2 ~2 ~1.8`,
             `particle minecraft:mob_portal ~0.3 ~3 ~1.5`,
             `particle minecraft:mob_portal ~0.4 ~4 ~1`,
-        ],1)
+        ],type,1)
         run(player,[
             `particle minecraft:portal_directional ~1.3 ~2 ~0.5`,
             `particle minecraft:portal_directional ~1.2 ~2.1 ~0.8`,
@@ -34,7 +33,7 @@ function Particle(player,type = "use"){
             `particle minecraft:portal_directional ~-0.1 ~2.6 ~-0.3`,
             `particle minecraft:portal_directional ~-0.1 ~2.7 ~-0.3`,
             `particle minecraft:portal_directional ~-0.1 ~2.8 ~-0.3`,
-        ],10)
+        ],type,10)
         run(player,[
             `particle minecraft:mob_portal ~0.1 ~1 ~`,
             `particle minecraft:mob_portal ~0.1 ~1.1 ~0.1`,
@@ -48,7 +47,7 @@ function Particle(player,type = "use"){
             `particle minecraft:mob_portal ~0.1 ~1.9 ~0.9`,
             `particle minecraft:mob_portal ~0.1 ~2 ~1`,
             `particle minecraft:mob_portal ~0.1 ~2.1 ~1.1`,
-        ],7)
+        ],type,7)
         run(player,[
             `particle minecraft:basic_portal_particle ~ ~3 ~`,
             `particle minecraft:basic_portal_particle ~ ~4 ~`,
@@ -58,7 +57,7 @@ function Particle(player,type = "use"){
             `particle minecraft:basic_portal_particle ~3 ~3 ~`,
             `particle minecraft:basic_portal_particle ~ ~3 ~0.1`,
             `particle minecraft:basic_portal_particle ~ ~2 ~0.3`,
-        ],3)
+        ],type,3)
     }
     if(type == "done"){
         run(player,[
@@ -67,7 +66,7 @@ function Particle(player,type = "use"){
             `particle minecraft:mob_portal ^^2.6^`,
             `particle minecraft:mob_portal ^^2.5^`,
             `particle minecraft:mob_portal ^0.1^2.6^0.1`,
-        ],20)
+        ],type,20)
         run(player,[
             `particle minecraft:basic_portal_particle ~ ~3 ~`,
             `particle minecraft:mob_portal ~ ~2 ~`,
@@ -77,7 +76,7 @@ function Particle(player,type = "use"){
             `particle minecraft:mob_portal ~ ~2.5 ~`,
             `particle minecraft:basic_portal_particle ~0.3 ~1 ~`,
             `particle minecraft:basic_portal_particle ~0.5 ~2 ~`,
-        ])
+        ],type)
         run(player,[
             `particle minecraft:basic_portal_particle ~1 ~1.5 ~`,
             `particle minecraft:basic_portal_particle ~1.3 ~1.5 ~`,
@@ -95,23 +94,23 @@ function Particle(player,type = "use"){
             `particle minecraft:basic_portal_particle ~ ~0.5 ~1.2`,
             `particle minecraft:portal_directional ~1 ~2 ~1`,
             `particle minecraft:basic_portal_particle ~ ~0.7 ~1.4`,
-        ],8)
+        ],type,8)
     }
 }
-function run (player,info = [],time = 0){
+function run (player,info = [],type,time = 0){
     info.forEach(command => {
         system.runTimeout(()=>{
-            itemUse[player.id] == undefined || itemUse[player.id] == false ?
+            itemUse[player.id] == undefined || itemUse[player.id] == false && type != "done" ?
             null : player.runCommand(command)
         },time)
     })
 }
 
-world.afterEvents.itemUse.subscribe(({itemStack:item,source:player})=>{
-    if(item.typeId != "minecraft:stick") return
-    player.setDynamicProperty("LastDeath",JSON.stringify({location:player.location,dimension:player.dimension}))
+//world.afterEvents.itemUse.subscribe(({itemStack:item,source:player})=>{
+    //if(item.typeId != "minecraft:stick") return
+    //player.setDynamicProperty("LastDeath",JSON.stringify({location:player.location,dimension:player.dimension}))
     //Particle(player,"use")
-})
+//})
 world.afterEvents.itemStartUse.subscribe(({ itemStack: item, source: player }) => {
     if(item.typeId != "new:grave_scroll" ) return
     let deathData = JSON.parse(player.getDynamicProperty("LastDeath"))
@@ -183,4 +182,4 @@ system.runInterval(()=>{
             container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
         }
     }
-}, 15)
+}, 10)
