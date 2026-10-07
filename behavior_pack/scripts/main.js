@@ -9,8 +9,7 @@ function Particle(player,type = "use"){
             `particle minecraft:mob_portal ^^2.6^`,
             `particle minecraft:mob_portal ^^2.6^`,
             `particle minecraft:mob_portal ^^2.6^`,
-            `particle minecraft:mob_portal ^^2.6^`,
-            
+            `particle minecraft:mob_portal ^^2.6^`
         ],40)
         run(player,[
             `particle minecraft:mob_portal ~0.1 ~1 ~2`,
