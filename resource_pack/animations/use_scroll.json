@@ -52,7 +52,7 @@
 		},
 		"animation.scroll.before_teleportation": {
 			"loop": true,
-			"animation_length": 0.5833,
+			"animation_length": 0.6,
 			"override_previous_animation": true,
 			"bones": {
 				"leftLeg": {

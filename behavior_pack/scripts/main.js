@@ -122,6 +122,9 @@ world.afterEvents.itemStartUse.subscribe(({ itemStack: item, source: player }) =
         player.runCommand(`playsound "portal.trigger" @s`)
         itemUse[player.id] = true
         Particle(player)
+        system.runTimeout(()=>{
+            player.playAnimation("animation.scroll.before_teleportation")
+        },60)
     }
 })
 world.afterEvents.itemStopUse.subscribe(({ itemStack: item, source: player })=>{
@@ -135,14 +138,14 @@ world.afterEvents.itemCompleteUse.subscribe(({itemStack:item,source:player})=>{
     if (item.typeId == "new:grave_scroll" && itemUse[player.id]){
         let deathData = JSON.parse(player.getDynamicProperty("LastDeath"))
         player.runCommand(`stopsound @s "portal.trigger"`)
-        itemUse[player.id] = false
-        Particle(player,"done")
         player.teleport(deathData.location)
         player.setDynamicProperty("LastDeath",undefined)
         system.runTimeout(()=>{
             player.runCommand(`playsound "mob.endermen.portal" @s`)
             player.playAnimation("animation.scroll.after_teleportation")
-        },0.1)
+            Particle(player,"done")
+            itemUse[player.id] = false
+        },1)
         player.startItemCooldown("grave_scroll",60)
         if(player.getGameMode() == 'Creative') return
         if(item.amount > 1){
@@ -167,14 +170,14 @@ system.runInterval(()=>{
         const item = container.getItem(player.selectedSlotIndex)
         if(
             (!player.getDynamicProperty("LastDeath") ||
-            JSON.parse(player.getDynamicProperty("LastDeath")).dimension.id != player.dimension.id)
+            JSON.parse(player.getDynamicProperty("LastDeath")).dimension.id != player.dimension?.id)
             && item?.typeId == "new:grave_scroll"
         ){
             container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll2",item.amount))
         }
         if(
             player.getDynamicProperty("LastDeath")
-            && JSON.parse(player.getDynamicProperty("LastDeath")).dimension.id == player.dimension.id
+            && JSON.parse(player.getDynamicProperty("LastDeath")).dimension.id == player.dimension?.id
             && item?.typeId == "new:grave_scroll2"
         ){
             container.setItem(player.selectedSlotIndex,new ItemStack("new:grave_scroll",item.amount))
